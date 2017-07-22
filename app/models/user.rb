@@ -10,7 +10,6 @@ class User < ApplicationRecord
     message: "must be valid email"},
     uniqueness: true}
 
-  include BCrypt
   def password
     @password ||= Password.new(password_hash)
   end
