@@ -1,6 +1,6 @@
 class AuthenticationController < ApplicationController
 
-  # skip_before_action :require_login, only: [:index, :login]
+  skip_before_action :require_login, only: [:login]
 
   def login
     user = User.find_by(email: params[:email])

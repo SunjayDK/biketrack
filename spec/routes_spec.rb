@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Routing for logging in and out", :type => :routing do
 
+  it "routes GET /login to users#index" do
+    expect(:get => "/login").to route_to("users#index")
+  end
+
   it "routes POST /login to authentication#login" do
     expect(:post => "/login").to route_to("authentication#login")
   end
@@ -13,6 +17,10 @@ RSpec.describe "Routing for logging in and out", :type => :routing do
 end
 
 RSpec.describe "Routing for registering a new member", :type => :routing do
+
+  it "routes GET /users to users#index" do
+    expect(:get => "/users").to route_to("users#index")
+  end
 
   it "routes GET /users/new to users#new" do
     expect(:get => "/users/new").to route_to("users#new")
