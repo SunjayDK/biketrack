@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+	root 'reports#new'
 
-	get '/', to: 'authentication#index'
-	get '/login', to: 'authentication#login'
-	get '/logout', to: 'authentication#logout'
-	get '/register', to: 'authentication#register'
+	post '/login', to: 'authentication#login'
+	post '/logout', to: 'authentication#logout'
+
+	resources :users, :reports, only: [:new, :create]
 
 end

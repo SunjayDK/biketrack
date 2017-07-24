@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe AuthenticationController, type: :controller do
 
-	let(:user_params) {
+	let(:user_params) {{
     email: "sleepyheadzzz@gmail.com",
     password: 'SnoozeAlarm12pm',
     fullname: "Rip van Winkle"
-  }
+  }}
   
   describe "#login" do
 
@@ -20,11 +20,10 @@ RSpec.describe AuthenticationController, type: :controller do
       expect(session[:user_id]).to_not be_nil
     end
 
-    it "redirects the student to the challenges url" do
+    it "redirects the student to the reports url" do
       post :login, params: user_params
-      expect(response).to redirect_to challenges_path
+      expect(response).to redirect_to reports_path
     end
-
   end
 
   describe "#logout" do

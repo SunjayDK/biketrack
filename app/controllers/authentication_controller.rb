@@ -1,23 +1,15 @@
 class AuthenticationController < ApplicationController
 
-  skip_before_action :require_login, only: [:index, :login]
-
-  def index
-    @page_title = "Login"
-    redirect_to challenges_path if current_student
-  end
+  # skip_before_action :require_login, only: [:index, :login]
 
   def login
-    omniauth_hash = request.env["omniauth.auth"]
-    student = User.find_by(
-      username: omniauth_hash["info"]["nickname"]
-    ) || User.create_with_omniauth(omniauth_hash)
-    session[:student_id] = student.id
-    redirect_to challenges_path, :notice => "Signed in!"
+    user = User.find_by(email: params[:email])
+    session[:user_id] = user.id
+    redirect_to reports_path, :notice => "Signed in!"
   end
 
   def logout
-    session[:student_id] = nil
+    session[:user_id] = nil
     redirect_to root_url, :notice => "Signed out!"
   end
 
