@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
 	def require_login
 	  if session[:user_id].nil?
-	    redirect_to root_path
+	    redirect_to users_path
 	  end
 	end
 end

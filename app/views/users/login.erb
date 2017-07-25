@@ -1,0 +1,24 @@
+<h2>Login</h2>
+
+<main class="form-wrapper" role="main">
+
+  <% if @errors %>
+    <div class="errors-wrapper">
+      <span>Your category could not be saved:</span>
+      <ul class="errors">
+        <% @errors.each do |error| %>
+          <li class="error"><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <form method="post" action="/login">
+    <label for="email_input">Email</label>
+    <%= email_field(:user, :email) %>
+    <label for="password_input">Password</label>
+    <%= password_field_tag(:password) %>
+    <input type="submit" value="Login" class="button">
+  </form>
+</main>
