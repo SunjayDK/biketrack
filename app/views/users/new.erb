@@ -4,7 +4,7 @@
 
   <% if @errors %>
     <div class="errors-wrapper">
-      <span>Your category could not be saved:</span>
+      <span>Registry failed:</span>
       <ul class="errors">
         <% @errors.each do |error| %>
           <li class="error"><%= error %></li>
@@ -14,13 +14,15 @@
   <% end %>
 
 
-  <form method="post" action="/login">
+  <%= form_for @user, url: {action: "create"} do |f| %>
+    <label for="email_input">Name</label>
+    <%= f.text_field(:fullname) %>
     <label for="email_input">Email</label>
-    <%= email_field(:user, :email) %>
+    <%= f.email_field(:email) %>
     <label for="password_input">Password</label>
-    <%= password_field_tag(:password) %>
+    <%= f.password_field(:password) %>
     <label for="password_confirmation_input">Password confimation</label>
-    <%= password_field_tag(:password_confirmation) %>
-    <input type="submit" value="Login" class="button">
-  </form>
+    <%= f.password_field(:password_confirmation) %>
+    <input type="submit" value="Register" class="button">
+  <% end %>
 </main>
